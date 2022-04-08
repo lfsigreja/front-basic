@@ -1,5 +1,9 @@
-# Front-end - Avalição Squid
+# Front Basic Test
 
+## Instruções
+Ao clonar o repositório, navegue até a pasta no seu terminal e digite o comando YARN
+
+Após a instalação, execute o comando YARN SERVER, irá ser inicializado um servidor LOCAL onde o aplicativo poderá ser testado.
 ## Proposta
 Criar uma página HTML utilizando de ponto de partida esse repositório.
 Depois, utilizando Javascript pegar os dados do JSON da requisição `(GET) - https://us-central1-squid-apis.cloudfunctions.net/test-front-basic`.
@@ -12,9 +16,6 @@ No final, subir o código em um repositório público no seu próprio GitHub e m
 ## Bonus
 Utilizar o framework da Squid para construção do layout
 [SQUID CSS](https://css.squidit.com.br/)
-
-## Problemas e Duvidas
-Caso trenha algum problema com endpoint, ou alguma duvida sobre o teste abra uma Issue nesse repositório, não precisa entrar em contato com o seu recrutador!
 
 ## Resultado Final
 ![Resultado](assets/result.jpeg "Resultado")
