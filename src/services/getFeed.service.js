@@ -3,16 +3,19 @@ import axios from "axios";
 export default class FeedAppService {
 
   async getFeed() {
-    let response
+    let data = {
+      response: [],
+      error: [],
+    }
 
-    await axios.get('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
+    await axios.get('https://us-central1-squid-apis.cloudfunctions.net/test-front-bac')
       .then((res) => {
-        this.response = res.data;
+        this.data.response = res.data;
       })
       .catch((err) => {
-        this.response = err
+        this.data.error = err
       });
 
-    return this.response
+    return this.data
   }
 }

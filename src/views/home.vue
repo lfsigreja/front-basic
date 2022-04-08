@@ -2,12 +2,15 @@
   <div>
     <div class="container">
       <img class="logo" src="../../assets/logo.svg" alt="Logo Squid">
-      
     </div>
-    <div class="container">
+    <div v-if="error">
+      <img src="https://static01.nyt.com/images/2016/08/05/us/05onfire1_xp/05onfire1_xp-jumbo-v2.jpg" alt="">
+      <p> Acho que temos um problema! Tente carregar a página novamente</p>
+    </div>
+    <div v-else class="container">
       <div class="container__image" v-for="i in feed" :key="i.id">
         <div class="content">
-          <img class="content__img"  :src="i.imagens.resolucaoPadrao.url" alt="">
+          <img class="content__img"  :src="i.imagens.resolucaoPadrao.url" alt="Imagem do Instagram">
           <div class="content__overlay content__overlay--blur" @click="openInstagramLink(i.link)">
               <p>@{{i.usuario.username}}</p>
               <p>
@@ -31,20 +34,25 @@
 
 <script>
 import { defineComponent } from 'vue'
-import FeedAppService from '../services/getFeed.service'
 import moment from 'moment'
+import axios from "axios";
 
 export default defineComponent({
   data() {
     return {
-      feedAppService: new FeedAppService(),
-      feed: '',
+      feed: [],
+      error: false,
     }
   },
   methods: {
     async getFeed() {
-      this.feed = await this.feedAppService.getFeed()
-      this.feed = this.feed.reverse()
+      await axios.get('https://us-central1-squid-apis.cloudfunctions.net/test-front-basic')
+        .then((res) => {
+          this.feed = res.data.reverse();
+        })
+        .catch(() => {
+          this.error = true
+        });
     },
     openInstagramLink(link) {
       window.open(link, '_blank');
