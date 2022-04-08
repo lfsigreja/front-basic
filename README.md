@@ -3,7 +3,7 @@
 ## Instruções
 Ao clonar o repositório, navegue até a pasta no seu terminal e digite o comando **yarn**
 
-Após a instalação, execute o comando **yarn server**, irá ser inicializado um servidor LOCAL onde o aplicativo poderá ser testado.
+Após a instalação, execute o comando **yarn serve**, irá ser inicializado um servidor LOCAL onde o aplicativo poderá ser testado.
 
 ## Proposta
 Criar uma página HTML utilizando de ponto de partida esse repositório.
