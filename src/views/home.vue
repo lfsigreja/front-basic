@@ -10,9 +10,18 @@
           <img class="content__img"  :src="i.imagens.resolucaoPadrao.url" alt="">
           <div class="content__overlay content__overlay--blur" @click="openInstagramLink(i.link)">
               <p>@{{i.usuario.username}}</p>
-              <p>{{i.upvotes}}</p>
-              <p>{{i.comentarios}}</p>
-              <p>{{i.criadoEm}}</p>
+              <p>
+                <img src="../../assets/heart.svg" alt="" class="svg__styling">
+                {{i.upvotes}}
+              </p>
+              <p>
+                <img src="../../assets/speech.svg" alt="" class="svg__styling">
+                {{i.comentarios}}
+              </p>
+              <p>
+                <img src="../../assets/calendar.svg" alt="" class="svg__styling">
+                {{dateFilter(i.criadoEm)}}
+              </p>
           </div>
         </div>
     </div>
@@ -23,6 +32,7 @@
 <script>
 import { defineComponent } from 'vue'
 import FeedAppService from '../services/getFeed.service'
+import moment from 'moment'
 
 export default defineComponent({
   data() {
@@ -34,9 +44,13 @@ export default defineComponent({
   methods: {
     async getFeed() {
       this.feed = await this.feedAppService.getFeed()
+      this.feed = this.feed.reverse()
     },
     openInstagramLink(link) {
       window.open(link, '_blank');
+    },
+    dateFilter(date) {
+     return moment(date).format("DD/MM/YYYY HH:mm");
     }
   },
   beforeMount() {
@@ -46,6 +60,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+  .svg__styling {
+    filter: invert(99%) sepia(29%) saturate(245%) hue-rotate(322deg) brightness(117%) contrast(100%);
+    width: 10px;
+  }
   .logo {
     width: 25rem;
   }
